@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar } from 'react-native';
-import ElevatedView from 'react-native-elevated-view';
+
+import PropTypes from 'prop-types';
 
 import api from '~/services/api';
 
 import Category from '~/components/Category';
-import { Container, List, Header, PageTitle } from './styles';
+import PageHeader from '~/components/PageHeader';
+import { Container, List } from './styles';
 
 export default function Dashboard({ navigation }) {
   const [products, setProducts] = useState([]);
@@ -27,12 +28,7 @@ export default function Dashboard({ navigation }) {
 
   return (
     <Container>
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-      <ElevatedView elevation={1}>
-        <Header>
-          <PageTitle>Cardápio</PageTitle>
-        </Header>
-      </ElevatedView>
+      <PageHeader title="Cardápio" />
 
       <List
         data={products}
@@ -46,6 +42,12 @@ export default function Dashboard({ navigation }) {
   );
 }
 
-Dashboard.navigationOptions = ({ navigation }) => ({
+Dashboard.navigationOptions = {
   header: null,
-});
+};
+
+Dashboard.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};

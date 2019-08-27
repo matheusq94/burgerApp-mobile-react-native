@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   StatusBar,
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
+
 import ImageView from 'react-native-image-view';
 
 import PropTypes from 'prop-types';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { addToCart } from '~/store/modules/cart/actions';
 
 import {
   Container,
@@ -30,6 +33,7 @@ import {
 } from './styles';
 
 export default function Details({ navigation }) {
+  const dispatch = useDispatch();
   const data = navigation.getParam('data');
   const images = [
     {
@@ -52,6 +56,13 @@ export default function Details({ navigation }) {
       return setQuantity(quantity - 1);
     }
     return null;
+  }
+
+  function addItemToCart(product) {
+    product.amount = quantity;
+    // console.tron.log(product);
+
+    return dispatch(addToCart(product));
   }
 
   return (
@@ -93,7 +104,7 @@ export default function Details({ navigation }) {
             <Icon name="add" size={15} color="#727C8E" />
           </MinusQtdButton>
         </QtdContainer>
-        <AddToCart>
+        <AddToCart onPress={() => addItemToCart(data)}>
           <AddToCartText>Adicionar ao carrinho</AddToCartText>
         </AddToCart>
       </QtdAndButton>
