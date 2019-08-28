@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Alert } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -55,6 +55,7 @@ export default function SignUp({ navigation }) {
 
   return (
     <Background>
+      <StatusBar barStyle="light-content" backgroundColor="#1d2126" />
       <ImageBackground />
       <Container>
         <Logo />

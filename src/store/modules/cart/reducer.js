@@ -20,8 +20,6 @@ export default function cart(state = INITIAL_STATE, action) {
             subtotal: (action.payload.amount * action.payload.price).toFixed(2),
           });
         }
-
-        console.tron.log(state);
       });
     case '@cart/REMOVE_FROM_CART':
       return produce(state, draft => {
@@ -29,6 +27,33 @@ export default function cart(state = INITIAL_STATE, action) {
 
         if (productIndex >= 0) {
           draft.splice(productIndex, 1);
+        }
+      });
+    case '@cart/UPDATE_QUANTITY':
+      return produce(state, draft => {
+        const productIndex = draft.findIndex(p => p.id === action.payload.id);
+
+        if (productIndex >= 0) {
+          if (action.payload.increment === true) {
+            if (draft[productIndex].amount >= 1) {
+              draft[productIndex].amount += 1;
+
+              const formattedSubtotal = (
+                draft[productIndex].amount * draft[productIndex].price
+              ).toFixed(2);
+              draft[productIndex].subtotal = formattedSubtotal;
+            }
+          } else if (draft[productIndex].amount >= 1) {
+            draft[productIndex].amount -= 1;
+            if (draft[productIndex].amount === 0) {
+              draft[productIndex].amount = 1;
+            }
+
+            const formattedSubtotal = (
+              draft[productIndex].amount * draft[productIndex].price
+            ).toFixed(2);
+            draft[productIndex].subtotal = formattedSubtotal;
+          }
         }
       });
     default:

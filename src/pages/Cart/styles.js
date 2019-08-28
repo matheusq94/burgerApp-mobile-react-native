@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.SafeAreaView`
   background-color: #f5f5f7;
@@ -78,4 +79,44 @@ export const RemoveButton = styled(TouchableOpacity)`
 
   align-items: center;
   justify-content: center;
+`;
+
+export const TotalAndSend = styled.View`
+  padding: 20px;
+  background: #fff;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+export const Total = styled.Text`
+  font-size: 22px;
+  font-weight: bold;
+
+  color: #badc58;
+`;
+export const SendOrderButton = styled(RectButton)`
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 4px;
+  background: #ff9f1c;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const SendOrderButtonUnavailable = styled(RectButton)`
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 4px;
+  background: #aaa;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const SendOrderText = styled.Text`
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
 `;
