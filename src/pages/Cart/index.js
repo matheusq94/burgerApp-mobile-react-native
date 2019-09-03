@@ -31,12 +31,12 @@ export default function Cart() {
   const dispatch = useDispatch();
   const items = useSelector(state => state.cart);
 
-  const total = items.reduce((total, item) => {
+  const totalPrice = items.reduce((total, item) => {
     const formatted = Number(total) + Number(item.subtotal);
     return formatted.toFixed(2);
   }, 0);
 
-  console.tron.log(total);
+  console.tron.log(totalPrice);
 
   function handleRemoveFromCart(id) {
     return dispatch(removeFromCart(id));
@@ -51,6 +51,7 @@ export default function Cart() {
         'Escolha pelo menos um item para continuar.'
       );
     }
+    console.tron.log(items);
   }
 
   return (
@@ -89,7 +90,7 @@ export default function Cart() {
       />
 
       <TotalAndSend>
-        <Total>Total: R${total}</Total>
+        <Total>Total: R${totalPrice}</Total>
         {items.length !== 0 ? (
           <SendOrderButton onPress={() => handleSubmitOrder()}>
             <SendOrderText>Finalizar Pedido</SendOrderText>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+
 import { useDispatch } from 'react-redux';
 import {
+  Alert,
   StatusBar,
   TouchableWithoutFeedback,
   TouchableOpacity,
@@ -62,7 +64,14 @@ export default function Details({ navigation }) {
     product.amount = quantity;
     // console.tron.log(product);
 
-    return dispatch(addToCart(product));
+    dispatch(addToCart(product));
+
+    Alert.alert(
+      'Produto adcionado ao carrinho',
+      `${product.name} from adcionado ao carrinho`
+    );
+
+    return navigation.navigate('Dashboard');
   }
 
   return (
@@ -125,6 +134,7 @@ Details.navigationOptions = ({ navigation }) => ({
 
 Details.propTypes = {
   navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
     getParam: PropTypes.func.isRequired,
   }).isRequired,
 };
