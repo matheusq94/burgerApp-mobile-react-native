@@ -8,9 +8,9 @@ import { Container, Title, List } from './styles';
 export default function Category({ data, navigation }) {
   return (
     <Container>
-      <Title>{data.category}</Title>
+      <Title>{data.name}</Title>
       <List
-        data={data.products}
+        data={data.Products}
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
           <Product data={item} navigation={navigation} />
@@ -22,8 +22,8 @@ export default function Category({ data, navigation }) {
 
 Category.propTypes = {
   data: PropTypes.shape({
-    category: PropTypes.string,
-    products: PropTypes.array,
+    name: PropTypes.string,
+    Products: PropTypes.array,
   }).isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,

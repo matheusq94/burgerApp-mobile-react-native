@@ -39,7 +39,7 @@ export default function Details({ navigation }) {
   const data = navigation.getParam('data');
   const images = [
     {
-      source: { uri: data.pic },
+      source: { uri: data.image_url },
       title: data.name,
       width: 800,
       height: 600,
@@ -79,7 +79,7 @@ export default function Details({ navigation }) {
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
       <ImageBg>
         <TouchableWithoutFeedback onPress={() => setVisible(true)}>
-          <ProductImage source={{ uri: data.pic }} />
+          <ProductImage source={{ uri: data.image_url }} />
         </TouchableWithoutFeedback>
         {visible && (
           <ImageView

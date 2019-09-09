@@ -19,7 +19,7 @@ export default function Product({ data, navigation }) {
       <Left>
         <Picture
           source={{
-            uri: data.pic,
+            uri: data.image_url,
           }}
         />
 
@@ -39,7 +39,7 @@ export default function Product({ data, navigation }) {
 
 Product.propTypes = {
   data: PropTypes.shape({
-    pic: PropTypes.string,
+    image_url: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
     price: PropTypes.number,
